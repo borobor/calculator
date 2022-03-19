@@ -1,10 +1,12 @@
-let displayCurrentNumber = document.querySelector(".second-row");
-let displayLoggedNumber = document.querySelector(".first-row");
+let secondRow = document.querySelector(".second-row");
+let firstRow = document.querySelector(".first-row");
 
 let keyPad = document.querySelectorAll("button");
 
-let currentNumber = '';
-let loggedNumber = '';
+let currentNumber = "";
+let loggedNumber = "";
+let result = "";
+let operator;
 
 keyPad.forEach((key) => {
   key.addEventListener("click", () => {
@@ -13,19 +15,38 @@ keyPad.forEach((key) => {
   });
 });
 
-let calculate = function (e) {
-	if (keyClicked >= 0 && keyClicked <= 9) {
-		currentNumber += keyClicked;
-		displayCurrentNumber.textContent = currentNumber;
-	}
+let calculate = function () {
+  if (keyClicked >= 0 && keyClicked <= 9) {
+    currentNumber += keyClicked;
+    secondRow.textContent = currentNumber;
+  }
   if (keyClicked == "AC") {
     currentNumber = "";
-    displayCurrentNumber.textContent = "";
+    loggedNumber = "";
+    secondRow.textContent = "";
+    firstRow.textContent = "";
   }
-	if (keyClicked == '+') {
-		loggedNumber = +loggedNumber + +currentNumber;
-		currentNumber = "";
-		displayCurrentNumber.textContent = "";
-		displayLoggedNumber.textContent = loggedNumber;
+  if (keyClicked == "+") {
+		operator = '+';
+    loggedNumber = +loggedNumber + +currentNumber;
+    currentNumber = "";
+    secondRow.textContent = "";
+    firstRow.textContent = `${loggedNumber}+`;
 	}
+	if (keyClicked == "-") {
+		loggedNumber = currentNumber;
+		currentNumber = "";
+		secondRow.textContent = "";
+		firstRow.textContent = `${loggedNumber}-`;
+		
+  }
+  if (keyClicked == "=") {
+    firstRow.textContent = "";
+		if (operator == '+') {
+			result = +loggedNumber + +currentNumber;
+    	secondRow.textContent = result;
+		}
+		loggedNumber = "";
+		currentNumber = "";
+  }
 };
