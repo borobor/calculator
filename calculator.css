@@ -1,3 +1,7 @@
+* {
+	font-family: 'Montserrat';
+}
+
 body {
 	padding: 0;
 	margin: 0;
@@ -25,7 +29,6 @@ body {
 	border: none;
 	margin: 1px;
 	height: 50px;
-	font-family: Tahoma;
 	font-size: large;
 	font-weight: bolder;
 }
@@ -41,4 +44,19 @@ body {
 .display {
 	grid-column: -1 / 1;
 	background-color: #000000a1 ;
+}
+
+.display > .first-row {
+	height: 40px;
+	padding: 5px;
+	text-align: end;
+	line-height: 40px;
+	color: #ffffffbf;
+}
+
+.display > .second-row {
+	padding: 5px;
+	text-align: end;
+	line-height: 60px;
+	color: #ffffffe6;
 }
