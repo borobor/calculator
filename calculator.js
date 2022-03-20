@@ -37,7 +37,20 @@ let click = function () {
 		currentNumber = "";
 		secondRow.textContent = "";
   }
-	
+	if (keyClicked == "x") {
+		operator = 'x';
+		calculate();
+		firstRow.textContent = `${result}x`;
+		currentNumber = "";
+		secondRow.textContent = "";
+  }
+	if (keyClicked == "÷") {
+		operator = '÷';
+		calculate();
+		firstRow.textContent = `${result}÷`;
+		currentNumber = "";
+		secondRow.textContent = "";
+  }
   if (keyClicked == "=") {
     firstRow.textContent = "";
 		calculate();
@@ -59,6 +72,24 @@ let calculate = function() {
 				result = loggedNumber;
 			} else {
 				result = loggedNumber - currentNumber;
+				loggedNumber = result;
+			}
+			break;
+		case 'x':
+			if (loggedNumber == '') {
+				loggedNumber = currentNumber;
+				result = loggedNumber;
+			} else {
+				result = loggedNumber * currentNumber;
+				loggedNumber = result;
+			}
+			break;
+		case '÷':
+			if (loggedNumber == '') {
+				loggedNumber = currentNumber;
+				result = loggedNumber;
+			} else {
+				result = loggedNumber / currentNumber;
 				loggedNumber = result;
 			}
 			break;
