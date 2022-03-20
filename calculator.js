@@ -11,42 +11,64 @@ let operator;
 keyPad.forEach((key) => {
   key.addEventListener("click", () => {
     keyClicked = key.textContent;
-    calculate();
+    click();
   });
 });
 
-let calculate = function () {
+let click = function () {
   if (keyClicked >= 0 && keyClicked <= 9) {
     currentNumber += keyClicked;
     secondRow.textContent = currentNumber;
   }
   if (keyClicked == "AC") {
-    currentNumber = "";
-    loggedNumber = "";
-    secondRow.textContent = "";
-    firstRow.textContent = "";
-  }
+		clearAll();
+	}
   if (keyClicked == "+") {
 		operator = '+';
-    loggedNumber = +loggedNumber + +currentNumber;
+		calculate();
+    firstRow.textContent = `${result}+`;
     currentNumber = "";
     secondRow.textContent = "";
-    firstRow.textContent = `${loggedNumber}+`;
 	}
 	if (keyClicked == "-") {
-		loggedNumber = currentNumber;
+		operator = '-';
+		calculate();
+		firstRow.textContent = `${result}-`;
 		currentNumber = "";
 		secondRow.textContent = "";
-		firstRow.textContent = `${loggedNumber}-`;
-		
   }
+	
   if (keyClicked == "=") {
     firstRow.textContent = "";
-		if (operator == '+') {
-			result = +loggedNumber + +currentNumber;
-    	secondRow.textContent = result;
-		}
+		calculate();
+		secondRow.textContent = result;
 		loggedNumber = "";
 		currentNumber = "";
   }
 };
+
+let calculate = function() {
+	switch (operator) {
+		case '+':
+			result = +loggedNumber + +currentNumber;
+			loggedNumber = result;
+			break;
+		case '-':
+			if (loggedNumber == '') {
+				loggedNumber = currentNumber;
+				result = loggedNumber;
+			} else {
+				result = loggedNumber - currentNumber;
+				loggedNumber = result;
+			}
+			break;
+	}
+};
+	
+let clearAll = function() {
+		currentNumber = "";
+		loggedNumber = "";
+		result = "";
+		secondRow.textContent = "";
+		firstRow.textContent = "";
+	};
