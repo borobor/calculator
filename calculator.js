@@ -3,10 +3,10 @@ let firstRow = document.querySelector(".first-row");
 
 let keyPad = document.querySelectorAll("button");
 
-let currentNumber = "";
-let loggedNumber = "";
+let currentNum = "";
+let loggedNum = "";
 let result = "";
-let operator;
+let operator = "";
 
 keyPad.forEach((key) => {
   key.addEventListener("click", () => {
@@ -17,8 +17,8 @@ keyPad.forEach((key) => {
 
 let click = function () {
   if (keyClicked >= 0 && keyClicked <= 9) {
-    currentNumber += keyClicked;
-    secondRow.textContent = currentNumber;
+    currentNum += keyClicked;
+    secondRow.textContent = currentNum;
   }
   if (keyClicked == "AC") {
 		clearAll();
@@ -26,80 +26,69 @@ let click = function () {
   if (keyClicked == "+") {
 		calculate();
 		operator = '+';
-    firstRow.textContent = `${result}+`;
-    currentNumber = "";
-    secondRow.textContent = "";
+    updateDisplay();
 	}
 	if (keyClicked == "-") {
 		calculate();
 		operator = '-';
-		firstRow.textContent = `${result}-`;
-		currentNumber = "";
-		secondRow.textContent = "";
+		updateDisplay();
   }
 	if (keyClicked == "x") {
 		calculate();
 		operator = 'x';
-		firstRow.textContent = `${result}x`;
-		currentNumber = "";
-		secondRow.textContent = "";
+		updateDisplay();
   }
 	if (keyClicked == "÷") {
 		calculate();
 		operator = '÷';
-		firstRow.textContent = `${result}÷`;
-		currentNumber = "";
-		secondRow.textContent = "";
+		updateDisplay();
   }
   if (keyClicked == "=") {
     firstRow.textContent = "";
 		calculate();
 		secondRow.textContent = result;
-		loggedNumber = "";
-		currentNumber = "";
+		loggedNum = "";
+		currentNum = "";
   }
 };
 
+let updateDisplay = function() {
+	firstRow.textContent = `${loggedNum} ${operator}`;
+	currentNum = "";
+	secondRow.textContent = "";
+}
+
 let calculate = function() {
-	switch (operator) {
-		case '+':
-			result = +loggedNumber + +currentNumber;
-			loggedNumber = result;
-			break;
-		case '-':
-			if (loggedNumber == '') {
-				loggedNumber = currentNumber;
-				result = loggedNumber;
-			} else {
-				result = loggedNumber - currentNumber;
-				loggedNumber = result;
-			}
-			break;
-		case 'x':
-			if (loggedNumber == '') {
-				loggedNumber = currentNumber;
-				result = loggedNumber;
-			} else {
-				result = loggedNumber * currentNumber;
-				loggedNumber = result;
-			}
-			break;
-		case '÷':
-			if (loggedNumber == '') {
-				loggedNumber = currentNumber;
-				result = loggedNumber;
-			} else {
-				result = loggedNumber / currentNumber;
-				loggedNumber = result;
-			}
-			break;
+	if (loggedNum == "") {
+		loggedNum = currentNum;
+		currentNum = "";
+	} else {
+		switch (operator) {
+			case '+':
+				result = +loggedNum + +currentNum;
+				loggedNum = result;
+				break;
+			case '-':
+				result = loggedNum - currentNum;
+				loggedNum = result;
+				break;
+			case '÷':
+				result = loggedNum / currentNum;
+				loggedNum = result;
+				break;
+			case 'x':
+				result = loggedNum * currentNum;
+				loggedNum = result;
+				break;
+		}
 	}
-};
-	
+}
+
 let clearAll = function() {
-		currentNumber = "";
-		loggedNumber = "";
+		currentNum = "";
+		loggedNum = "";
 		result = "";
+		operator = "";
 		secondRow.textContent = "";
 		firstRow.textContent = "";
 	};
