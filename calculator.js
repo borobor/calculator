@@ -24,29 +24,29 @@ let click = function () {
 		clearAll();
 	}
   if (keyClicked == "+") {
-		operator = '+';
 		calculate();
+		operator = '+';
     firstRow.textContent = `${result}+`;
     currentNumber = "";
     secondRow.textContent = "";
 	}
 	if (keyClicked == "-") {
-		operator = '-';
 		calculate();
+		operator = '-';
 		firstRow.textContent = `${result}-`;
 		currentNumber = "";
 		secondRow.textContent = "";
   }
 	if (keyClicked == "x") {
-		operator = 'x';
 		calculate();
+		operator = 'x';
 		firstRow.textContent = `${result}x`;
 		currentNumber = "";
 		secondRow.textContent = "";
   }
 	if (keyClicked == "÷") {
-		operator = '÷';
 		calculate();
+		operator = '÷';
 		firstRow.textContent = `${result}÷`;
 		currentNumber = "";
 		secondRow.textContent = "";
