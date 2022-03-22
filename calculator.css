@@ -12,7 +12,40 @@ body {
 }
 
 .header {
+	width: 400px;
+	align-self: center;
 	text-align: center;
+}
+
+.btn {
+	margin-top: 30px;
+	border: none;
+	background: none;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.btn:hover {
+	cursor: pointer;
+	color: #5eff00;
+	transition: .8s ease;
+}
+
+.btn::after {
+	content: "";
+	height: 2px;
+	width: 0%;
+	background-color: #3700ff;
+	display: block;
+	transition: .5s ease;	
+}
+
+.btn:hover::after {
+	content: "";
+	height: 2px;
+	width: 100%;
+	background-color: #5eff00;
+	display: block;
 }
 
 .calculator-grid {
