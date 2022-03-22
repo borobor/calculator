@@ -23,6 +23,10 @@ let click = function () {
   if (keyClicked == "AC") {
 		clearAll();
 	}
+	if (keyClicked == "DEL") {
+		currentNum = currentNum.slice(0, -1);
+		secondRow.textContent = currentNum;
+	}
   if (keyClicked == "+") {
 		calculate();
 		operator = '+';
@@ -44,6 +48,7 @@ let click = function () {
 		updateDisplay();
   }
 	if (keyClicked == ".") {
+		if (currentNum == "") return;
 		if (currentNum.includes(".")) return;
 		currentNum += keyClicked;
 		secondRow.textContent = currentNum;
