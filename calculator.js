@@ -28,21 +28,25 @@ let click = function () {
 		secondRow.textContent = currentNum;
 	}
   if (keyClicked == "+") {
+		if (!currentNum) return;
 		calculate();
 		operator = '+';
     updateDisplay();
 	}
 	if (keyClicked == "-") {
+		if (!currentNum) return;
 		calculate();
 		operator = '-';
 		updateDisplay();
   }
 	if (keyClicked == "x") {
+		if (!currentNum) return;
 		calculate();
 		operator = 'x';
 		updateDisplay();
   }
 	if (keyClicked == "÷") {
+		if (!currentNum) return;
 		calculate();
 		operator = '÷';
 		updateDisplay();
@@ -54,13 +58,8 @@ let click = function () {
 		secondRow.textContent = currentNum;
 	}
   if (keyClicked == "=") {
-    firstRow.textContent = "";
 		calculate();
-		secondRow.textContent = result;
-		loggedNum = result;
-		operator = "";
-		result = "";
-		currentNum = "";
+    displayResult();
   }
 };
 
@@ -101,10 +100,19 @@ let calculate = function() {
 }
 
 let clearAll = function() {
-		currentNum = "";
-		loggedNum = "";
-		result = "";
-		operator = "";
-		secondRow.textContent = "";
-		firstRow.textContent = "";
-	};
+	currentNum = "";
+	loggedNum = "";
+	result = "";
+	operator = "";
+	secondRow.textContent = "";
+	firstRow.textContent = "";
+}
+
+let displayResult = function() {
+	firstRow.textContent = "";
+	secondRow.textContent = result;
+	currentNum = "";
+	loggedNum = "";
+	result = "";
+	operator = "";
+}
