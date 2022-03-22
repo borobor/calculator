@@ -47,7 +47,9 @@ let click = function () {
     firstRow.textContent = "";
 		calculate();
 		secondRow.textContent = result;
-		loggedNum = "";
+		loggedNum = result;
+		operator = "";
+		result = "";
 		currentNum = "";
   }
 };
@@ -66,18 +68,22 @@ let calculate = function() {
 		switch (operator) {
 			case '+':
 				result = +loggedNum + +currentNum;
+				result = Math.round(result*1000)/1000;
 				loggedNum = result;
 				break;
 			case '-':
 				result = loggedNum - currentNum;
+				result = Math.round(result*1000)/1000;
 				loggedNum = result;
 				break;
 			case '÷':
 				result = loggedNum / currentNum;
+				result = Math.round(result*1000)/1000;
 				loggedNum = result;
 				break;
 			case 'x':
 				result = loggedNum * currentNum;
+				result = Math.round(result*1000)/1000;
 				loggedNum = result;
 				break;
 		}
