@@ -43,6 +43,11 @@ let click = function () {
 		operator = '÷';
 		updateDisplay();
   }
+	if (keyClicked == ".") {
+		if (currentNum.includes(".")) return;
+		currentNum += keyClicked;
+		secondRow.textContent = currentNum;
+	}
   if (keyClicked == "=") {
     firstRow.textContent = "";
 		calculate();
