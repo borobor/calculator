@@ -18,7 +18,7 @@ keyPad.forEach((key) => {
 let click = function () {
   if (keyClicked >= 0 && keyClicked <= 9) {
     currentNum += keyClicked;
-    secondRow.textContent = currentNum;
+    secondRow.textContent = Number.parseFloat(currentNum).toLocaleString("en-US");
   }
   if (keyClicked == "AC") {
 		clearAll();
@@ -58,6 +58,7 @@ let click = function () {
 		secondRow.textContent = currentNum;
 	}
   if (keyClicked == "=") {
+		if (!loggedNum) return;
 		calculate();
     displayResult();
   }
@@ -110,7 +111,7 @@ let clearAll = function() {
 
 let displayResult = function() {
 	firstRow.textContent = "";
-	secondRow.textContent = result;
+	secondRow.textContent = Number.parseFloat(result).toLocaleString("en-US");
 	currentNum = "";
 	loggedNum = "";
 	result = "";
